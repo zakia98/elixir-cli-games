@@ -16,6 +16,27 @@ defmodule Games do
     :world
   end
 
+  def main(arg) do
+    IO.puts("What game would you like to play?")
+    IO.puts("\n1. Guessing Game\n2. Rock Paper Scissors\n3. Wordle")
+
+    input = IO.gets("Please select an option. Type exit to exit: ") |> String.trim()
+
+    case input do
+      "1" ->
+        Games.GuessingGame.play()
+        main(arg)
+      "2" ->
+        Games.RockPaperScissors.play()
+        main(arg)
+      "3" ->
+        Games.Wordle.play()
+        main(arg)
+      "exit" -> "Thanks for playing!"
+      true -> "Unknown input"
+    end
+  end
+
   defmodule GuessingGame do
     @moduledoc """
     Documentation for `guessing games`
